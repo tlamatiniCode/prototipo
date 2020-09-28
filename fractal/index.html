@@ -1,0 +1,41 @@
+<html>
+	<head>
+	</head>
+	<body style="display: flex;">
+	
+		<canvas height="515" width="560"></canvas>
+		<script>
+			const cx = document.querySelector("canvas").getContext("2d");
+			cx.scale(1,1);
+			let colobj = {};
+			
+			function branch(length, angle, scale, cobj) {
+				
+				colobj.r = setCol();
+				colobj.g = setCol();
+				colobj.b = setCol();
+				cx.fillStyle = `rgb(${cobj.r}, ${cobj.g}, ${cobj.b})`;
+				cx.fillRect(0, 0, 10* Math.random() | 0, length);
+				if (length < 8) return;
+				cx.save();
+				cx.translate(0, length);
+				cx.rotate(-angle);
+				branch(length * scale, angle, scale, cobj);
+				cx.rotate(2 * angle); 
+			  	branch(length * scale, angle, scale, cobj);
+				cx.restore();
+			}
+			function setCol(){
+			 return 255* Math.random() | 0;
+			}
+			cx.translate(300, 0);
+			function nuevo(){
+				cx.clearRect(0, 0, cx.canvas.height, cx.canvas.width);
+							
+				branch(60, 0.5, 0.8, colobj);
+			}
+		</script>
+		
+		<input type="button" value="Dani click" onclick="nuevo();"></input>
+	</body>
+</html>
