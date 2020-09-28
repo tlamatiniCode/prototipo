@@ -1,9 +1,15 @@
 <html>
 	<head>
 	</head>
-	<body style="display: flex;">
-	
-		<canvas height="515" width="560"></canvas>
+	<body>
+		<div style="display: flex;">
+			<canvas height="515" width="560"></canvas>			
+			<input type="button" value="Dani click" onclick="nuevo();"></input>
+		</div>
+		
+		<h5 style="width: 530; text-transform: lowercase">un objeto geométrico cuya estructura básica, fragmentada o aparentemente irregular, se repite a diferentes escalas.​</br> El término fue propuesto por el matemático Benoît Mandelbrot en 1975 y deriva del latín fractus, que significa quebrado o fracturado
+		</h5>
+		
 		<script>
 			const cx = document.querySelector("canvas").getContext("2d");
 			cx.scale(1,1);
@@ -35,7 +41,5 @@
 				branch(60, 0.5, 0.8, colobj);
 			}
 		</script>
-		
-		<input type="button" value="Dani click" onclick="nuevo();"></input>
 	</body>
 </html>
