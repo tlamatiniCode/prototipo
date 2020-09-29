@@ -41,5 +41,66 @@
 				branch(60, 0.5, 0.8, colobj);
 			}
 		</script>
+		
+		
+		<canvas id="myCanvas" width="800" height="800"></canvas>
+<script>
+var creal = -.8
+var cimag = .156;
+var canvas = document.getElementById('myCanvas');
+var context = canvas.getContext('2d');
+var frame = 0;
+ 				
+				
+var pallette=[]; //an array that stores the RGB combinations
+ 
+function julia()
+{
+        for(y=0;y<100;y++)
+                {
+                for(x=0;x<100;x++)
+                        {
+                        var cx=-1.6+x/30;
+                        var cy=-1.6+y/30;
+                        var i = 0;
+ 
+                        do
+                                {
+                                xt=cx*cx-cy*cy+creal;
+                                cy=2*cx*cy+cimag;
+                                cx=xt;
+                                i++;
+                                }
+                        while ((cx*cx+cy*cy<4)&&i<25);
+ 
+                        //i=i.toString(16); - commented out since not needed in this version
+                        context.beginPath();
+                        context.rect(x*4, y*4, 4, 4);
+                        context.fillStyle = pallette[i];
+                        context.fill();
+                        }
+                }
+        frame++;
+        creal=-.8+.6*Math.sin(frame/(3.14*20));
+        cimag=.156+.4*Math.cos(frame/(3.14*40));
+        
+}
+var c = {};
+
+for(x=0;x<4;x++) // this loop populates the color pallette array
+        {
+		     c.r = setCol();
+				c.g = setCol();
+				c.b = setCol();
+		     pallette[x]=`rgb(${c.r}, ${c.g}, ${c.b})`;
+		     pallette[x+1]=`rgb(${c.r+3}, ${c.g+3}, ${c.b+3})`;
+		     pallette[x+8]=`rgb(${c.r+1}, ${c.g+1}, ${c.b+1})`;
+				pallette[x+11]=`rgb(${c.r+4}, ${c.g+4}, ${c.b+4})`;
+		     pallette[17+x]=`rgb(${c.r+2}, ${c.g+2}, ${c.b+2})`;
+        }
+ 
+a=setInterval(julia,70);
+ 
+</script>
 	</body>
 </html>
